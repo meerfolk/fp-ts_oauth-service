@@ -2,11 +2,16 @@ import { FastifyInstance, RequestGenericInterface } from 'fastify';
 import { pipe } from 'fp-ts/function';
 
 import { IContext } from './domain/context.interface';
+import { exchangeCode } from './domain/exchange-code';
+import { OauthTypesEnum } from './domain/oauth/oauth-types-enum';
 
 interface IOauthRedirectRequest extends RequestGenericInterface {
     Querystring: {
         code: string;
         state?: Record<string, string>;
+    };
+    Params: {
+        oauthType: OauthTypesEnum;
     };
 }
 
@@ -16,9 +21,9 @@ const addRedirectRoute =
         fastify.get<IOauthRedirectRequest, unknown>(
             '/v1/oauth-redirect/:oauthType',
             async (request) => {
-                context.logInfo(request.query.code)();
+                const exchange = exchangeCode(context)(request.params.oauthType)(request.query.code);
 
-                return {};
+                return exchange();
             }
         );
 

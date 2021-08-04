@@ -3,7 +3,7 @@ import { flow } from 'fp-ts/function';
 
 import { initRoutes } from './init-routes';
 import { startServer } from './start-server';
-import {IContext} from './domain/context.interface';
+import { IContext } from './domain/context.interface';
 import { getConfigData } from './infrastructure/get-config-data';
 
 const app = Fastify({
