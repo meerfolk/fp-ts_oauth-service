@@ -1,5 +1,9 @@
 {
   "server": {
     "port": "SERVER_PORT"
+  },
+  "client": {
+    "id": "CLIENT_ID",
+    "secret": "CLIENT_SECRET"
   }
 }
