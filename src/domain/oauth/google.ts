@@ -2,7 +2,7 @@ import * as TE from 'fp-ts/TaskEither';
 
 import { IHttpClient } from '../context.interface';
 
-const URL = 'https://oauth2.googleapis.com/_token';
+const URL = 'https://oauth2.googleapis.com/token';
 const params = {
     grant_type: 'authorization_code',
 };
