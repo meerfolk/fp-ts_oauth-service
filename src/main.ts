@@ -13,7 +13,10 @@ const app = Fastify({
 });
 const context: IContext = {
     getConfigData,
-    logInfo: (message: string) => () => app.log.info(message),
+    logger: {
+        logInfo: (message: string) => () => app.log.info(message),
+        logError: (message: string) => () => app.log.error(message),
+    },
     httpClient: {
         postRequest: postHttpRequest,
     },

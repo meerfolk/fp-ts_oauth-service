@@ -6,8 +6,13 @@ export interface IHttpClient {
     postRequest: <T>(url: string, params: Record<string, string>) => TE.TaskEither<Error, T>;
 }
 
+export interface ILogger {
+    logInfo: (message: string) => IO.IO<void>;
+    logError: (message: string) => IO.IO<void>;
+}
+
 export interface IContext {
     getConfigData: <T>(path: string) => E.Either<Error, T>;
-    logInfo: (message: string) => IO.IO<void>;
+    logger: ILogger;
     httpClient: IHttpClient;
 }
